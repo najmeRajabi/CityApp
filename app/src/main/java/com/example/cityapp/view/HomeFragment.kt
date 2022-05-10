@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.cityapp.R
 import com.example.cityapp.adapters.City
 import com.example.cityapp.adapters.CityAdapter
@@ -36,15 +38,30 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initViews()
+
+        binding.fabGoToNext.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_selectedCityFragment)
+        }
     }
 
     private fun initViews() {
 
-        val adapter = CityAdapter {}
+        val adapter = CityAdapter {
+            Toast.makeText(requireContext(),"hello", Toast.LENGTH_SHORT).show()
+            vModel.selectItem(it)
+        }
         vModel.cityList.observe(requireActivity()){
             adapter.submitList(it)
         }
         binding.recyclerCity.adapter = adapter
+
+        vModel.hideBtnNextPage.observe(requireActivity()){
+            if (it) {
+                binding.fabGoToNext.visibility = View.GONE
+            }else{
+                binding.fabGoToNext.visibility = View.VISIBLE
+            }
+        }
     }
 
 }

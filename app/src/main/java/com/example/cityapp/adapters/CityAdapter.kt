@@ -1,8 +1,10 @@
 package com.example.cityapp.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -25,6 +27,7 @@ class CityAdapter(var clickHandler : ClickHandler):
         holder.bind(getItem(position) , clickHandler )
 
 
+
     }
 
     object CityDiffCallback : DiffUtil.ItemCallback<City>() {
@@ -38,10 +41,10 @@ class CityAdapter(var clickHandler : ClickHandler):
     }
 
 
-    class ViewHolder( view: View): RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View): RecyclerView.ViewHolder(view) {
 
         val txvCity = view.findViewById<TextView>(R.id.txv_city_name)
-
+        val imvSelected = view.findViewById<ImageView>(R.id.imv_select)
 
 
         fun bind(
@@ -50,6 +53,23 @@ class CityAdapter(var clickHandler : ClickHandler):
         ) {
 
             txvCity.text = city.name
+            changeBackground(city)
+
+            view.setOnClickListener {
+                clickHandler(city)
+                changeBackground(city)
+            }
+        }
+
+
+        private fun changeBackground(city: City) {
+            if (city.selected){
+                view.setBackgroundResource(R.color.selected_bg)
+                imvSelected.visibility = View.VISIBLE
+            }else{
+                view.setBackgroundResource(R.color.unselected_bg)
+                imvSelected.visibility = View.INVISIBLE
+            }
 
         }
     }
