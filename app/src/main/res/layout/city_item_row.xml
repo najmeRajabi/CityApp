@@ -18,7 +18,7 @@
             android:id="@+id/txv_city_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="@string/city"
+            android:text="@string/city"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -33,6 +33,15 @@
             android:src="@drawable/ic_baseline_done_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
+
+        <View
+            android:id="@+id/line_item"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/imv_select"
+            android:alpha="0.2"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

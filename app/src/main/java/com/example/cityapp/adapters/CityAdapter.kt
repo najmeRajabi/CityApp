@@ -40,6 +40,7 @@ class CityAdapter(var clickHandler : ClickHandler):
 
     class ViewHolder( view: View): RecyclerView.ViewHolder(view) {
 
+        val txvCity = view.findViewById<TextView>(R.id.txv_city_name)
 
 
 
@@ -48,6 +49,7 @@ class CityAdapter(var clickHandler : ClickHandler):
             clickHandler: ClickHandler
         ) {
 
+            txvCity.text = city.name
 
         }
     }

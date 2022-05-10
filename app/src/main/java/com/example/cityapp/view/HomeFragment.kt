@@ -6,13 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import com.example.cityapp.R
+import com.example.cityapp.adapters.City
 import com.example.cityapp.adapters.CityAdapter
 import com.example.cityapp.databinding.FragmentHomeBinding
+import com.example.cityapp.repository.CityViewModel
 
 class HomeFragment : Fragment() {
 
 
+    val vModel: CityViewModel by activityViewModels()
     lateinit var binding : FragmentHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +39,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun initViews() {
+
         val adapter = CityAdapter {}
-        adapter.submitList(arrayListOf())
+        vModel.cityList.observe(requireActivity()){
+            adapter.submitList(it)
+        }
         binding.recyclerCity.adapter = adapter
     }
 
