@@ -40,6 +40,18 @@ class CityAdapter(var clickHandler : ClickHandler):
         }
     }
 
+//    fun removeItem(position: Int) {
+//        imageModelArrayList.removeAt(position)
+//        notifyItemRemoved(position)
+//        notifyItemRangeChanged(position, imageModelArrayList.size)
+//    }
+//
+//    fun restoreItem(model: Model, position: Int) {
+//        imageModelArrayList.add(position, model)
+//        // notify item added by position
+//        notifyItemInserted(position)
+//    }
+
 
     class ViewHolder(val view: View): RecyclerView.ViewHolder(view) {
 

@@ -1,7 +1,6 @@
 package com.example.cityapp.repository
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.cityapp.adapters.City
@@ -36,6 +35,12 @@ class CityViewModel(app: Application): AndroidViewModel(app) {
 
     private fun checkHiddenNextBtn() {
         hideBtnNextPage.value = selectedCityList.value?.isEmpty() == true
+    }
+
+    fun deSelectCity(position: Int){
+        Repository.selectedCityList[position].selected = false
+        Repository.selectedCityList.remove(Repository.selectedCityList[position])
+
     }
 
 }
