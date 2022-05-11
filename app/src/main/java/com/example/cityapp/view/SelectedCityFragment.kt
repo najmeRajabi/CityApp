@@ -1,5 +1,6 @@
 package com.example.cityapp.view
 
+import android.graphics.*
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +21,8 @@ class SelectedCityFragment : Fragment() {
 
     lateinit var binding: FragmentSelectedCityBinding
     val vModel : CityViewModel by activityViewModels()
+
+    private val p = Paint()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,10 +58,8 @@ class SelectedCityFragment : Fragment() {
     }
     fun removeItem(position: Int, adapter: CityAdapter) {
         adapter.apply {
-//            vModel.selectedCityList.value.removeAt(position)
             notifyItemRemoved(position)
             vModel.deSelectCity(position)
-//            notifyItemRangeChanged(position, imageModelArrayList.size)
         }
     }
 
