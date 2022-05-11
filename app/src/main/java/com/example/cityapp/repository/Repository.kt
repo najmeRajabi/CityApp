@@ -18,4 +18,5 @@ object Repository {
         City(9 , "bojnord" ),
         City(10 , "tehran" )
     )
+    val selectedCityList : ArrayList<City> = arrayListOf()
 }

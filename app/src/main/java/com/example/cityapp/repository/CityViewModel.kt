@@ -1,6 +1,7 @@
 package com.example.cityapp.repository
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.cityapp.adapters.City
@@ -12,9 +13,7 @@ class CityViewModel(app: Application): AndroidViewModel(app) {
     var hideBtnNextPage = MutableLiveData<Boolean>()
     var selectedItem = MutableLiveData<Boolean>()
 
-//    val hideBtnNextPage = Transformations.map(selectedCityList){
-//        it.isEmpty()
-//    }
+
 
     init {
         cityList.value = Repository.cityList
@@ -25,10 +24,12 @@ class CityViewModel(app: Application): AndroidViewModel(app) {
     fun selectItem(city: City){
         city.selected = !city.selected
         if (city.selected){
-            selectedCityList.value?.plus(city)
-            hideBtnNextPage.value = false
+            Repository.selectedCityList.add(city)
+            selectedCityList.value = Repository.selectedCityList
+            checkHiddenNextBtn()
         }else{
-            selectedCityList.value?.minus(city)
+            Repository.selectedCityList.remove(city)
+            selectedCityList.value = Repository.selectedCityList
             checkHiddenNextBtn()
         }
     }
